@@ -582,8 +582,11 @@ while thing == thing2 and counter < 1 do
                 end
             end
             if true then
-                hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Death), function() end)
-                hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Respawn), function() end)
+                pcall(function()
+                    local C = game:GetService("ReplicatedStorage").Effect.Container
+                    hookfunction(require(C.Death), function() end)
+                    hookfunction(require(C.Respawn), function() end)
+                end)
             elseif (not (42 < 67)) == (42 >= 67) then
             end
             if game.PlaceId == 2753915549 or game.PlaceId == 85211729168715 then
@@ -23990,9 +23993,11 @@ end
                 Name = "Meteor Rain",
                 Callback = function()
                     if vu14.Character and vu14.Character.PrimaryPart then
-                        require(game:GetService("ReplicatedStorage").Effect.Container.UzothSpec)({
-                            Position = vu14.Character.PrimaryPart.Position,
-                        })
+                        pcall(function()
+                            require(game:GetService("ReplicatedStorage").Effect.Container.UzothSpec)({
+                                Position = vu14.Character.PrimaryPart.Position,
+                            })
+                        end)
                     end
                 end,
             })
